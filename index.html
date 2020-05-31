@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CakeAI - Checkout</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍰</text></svg>">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma-pricingtable@0.2.0/dist/css/bulma-pricingtable.min.css"
+    />
+    <script src="https://js.stripe.com/v3"></script>
+  </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          Cake AI
+        </a>
+
+        <a
+          role="button"
+          class="navbar-burger burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Product
+            </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="/?productId=golinks">
+                go/links
+              </a>
+              <a class="navbar-item" href="/?productId=comingsoon">
+                Coming soon!
+              </a>
+              <hr class="navbar-divider" />
+              <a class="navbar-item">
+                Report an issue
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-primary" href="https://twitter.com/cakeai_">
+                <strong>Twitter</strong>
+              </a>
+              <a class="button is-light" href="https://www.cakeai.app">
+                Website
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section id="product-description" class="hero is-bold">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title" id="product-title"></h1>
+          <h2 class="subtitle" id="product-subtitle"></h2>
+          <p id="error-message"></p>
+        </div>
+      </div>
+    </section>
+
+    <br />
+
+    <div
+      class="pricing-table"
+      id="pricing-table-golinks"
+      style="visibility: hidden;"
+    >
+      <div class="pricing-plan">
+        <div class="plan-header">Free</div>
+        <div class="plan-price">
+          <span class="plan-price-amount"
+            ><span class="plan-price-currency">$</span>0</span
+          >/user/mo
+        </div>
+        <div class="plan-items">
+          <div class="plan-item">For personal use only</div>
+          <div class="plan-item">15 go/links are always free</div>
+          <div class="plan-item">Unlimited redirects</div>
+          <div class="plan-item">-</div>
+        </div>
+        <div class="plan-footer">
+          <button
+            data-checkout-mode="subscription"
+            data-price-id="plan_HHVqAESdS2UuXo"
+            class="button is-fullwidth plan-button"
+          >
+            Choose
+          </button>
+        </div>
+      </div>
+
+      <div class="pricing-plan is-warning">
+        <div class="plan-header">Family</div>
+        <div class="plan-price">
+          <span class="plan-price-amount"
+            ><span class="plan-price-currency">$</span>0.99</span
+          >/user/mo
+        </div>
+        <div class="plan-items">
+          <div class="plan-item">Focus on the functionality</div>
+          <div class="plan-item">Unlimited go/links</div>
+          <div class="plan-item">Unlimited redirects</div>
+          <div class="plan-item">-</div>
+        </div>
+        <div class="plan-footer">
+          <button class="button is-fullwidth">Choose</button>
+        </div>
+      </div>
+
+      <div class="pricing-plan is-active">
+        <div class="plan-header">Team</div>
+        <div class="plan-price">
+          <span class="plan-price-amount"
+            ><span class="plan-price-currency">$</span>1.99</span
+          >/user/mo
+        </div>
+        <div class="plan-items">
+          <div class="plan-item">For a growing team</div>
+          <div class="plan-item">Unlimited go/links</div>
+          <div class="plan-item">Unlimited redirects</div>
+          <div class="plan-item">Past 1 year of analytics for go/links</div>
+        </div>
+        <div class="plan-footer">
+          <button class="button is-fullwidth">Choose</button>
+        </div>
+      </div>
+
+      <div class="pricing-plan is-danger">
+        <div class="plan-header">Enterprise</div>
+        <div class="plan-price">
+          <span class="plan-price-amount"
+            ><span class="plan-price-currency">$</span>2.99</span
+          >/user/mo
+        </div>
+        <div class="plan-items">
+          <div class="plan-item">Unlimited go/links</div>
+          <div class="plan-item">Unlimited redirects</div>
+          <div class="plan-item">Past 3 years of analytics for go/links</div>
+          <div class="plan-item">Past 1 year of audit logs for go/links</div>
+        </div>
+        <div class="plan-footer">
+          <button class="button is-fullwidth">Choose</button>
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <br />
+
+    <footer class="footer">
+      <div class="has-text-centered">
+        <p>
+          <strong>CakeAI</strong> tools are built by our amazing team in the
+          city of San Francisco.
+        </p>
+        <br />
+        <p>&copy; 2019-2020 CakeAI</p>
+      </div>
+    </footer>
+  </body>
+  <script src="assets/main.js"></script>
+</html>
